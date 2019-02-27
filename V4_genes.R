@@ -32,7 +32,7 @@ FoundationOne$FoundationOne = "Yes"
 MSK = read_xlsx(path = "Gene lists.xlsx", sheet = "MSK")
 MSK$MSK = "Yes"
 
-venn.diagram(x = list(StrataNGSv3 = StrataNGSv3$Gene.Symbol, TSO500 = TSO500$Gene.Symbol, MSK = MSK$Gene.Symbol, FoundationOne = FoundationOne$Gene.Symbol, xT = xT$Gene.Symbol), filename = "Pic.png")
+venn.diagram(x = list(StrataNGSv3 = StrataNGSv3$Gene.Symbol, TSO500 = TSO500$Gene.Symbol, MSK = MSK$Gene.Symbol, FoundationOne = FoundationOne$Gene.Symbol), filename = "Pic.png")
 
 #Merge panels
 gene_list = merge(x = StrataNGSv3, y = xT, by = "Gene.Symbol", all = TRUE)
