@@ -1,4 +1,5 @@
 install.packages("readxl")
+install.packages("VennDiagram")
 library(readxl)
 library(VennDiagram)
 
@@ -80,3 +81,4 @@ gene_list = merge(x = gene_list, y = StrataNGSv3, by = "Gene.Symbol", all = TRUE
 
 #save merged file
 write.csv(x = gene_list, file = "panel_comparison.csv")
+
