@@ -1,5 +1,3 @@
-install.packages("readxl")
-install.packages("VennDiagram")
 library(readxl)
 library(VennDiagram)
 
