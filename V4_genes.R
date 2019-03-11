@@ -8,40 +8,44 @@ library(VennDiagram)
 #load StrataNGS version 3 panel
 StrataNGSv3 = read_xlsx(path = "Gene lists.xlsx", sheet = "StrataNGSv3")
 StrataNGSv3$StrataNGSv3 = "Yes"
-StrataNGSv3 = StrataNGSv3[, c("Gene.Symbol", "StrataNGSv3")]
+StrataNGSv3 = StrataNGSv3[, c("Approved symbol", "StrataNGSv3")]
+View(xO)
 
 #load Tempus xT gene panel
 xT = read_xlsx(path = "Gene lists.xlsx", sheet = "xT")
 xT$xT = "Yes"
-xT = xT[, c("Gene.Symbol", "xT")]
+xT = xT[, c("Approved symbol", "xT")]
 
 #load Tempus xO gene panel
 xO = read_xlsx(path = "Gene lists.xlsx", sheet = "xO")
 xO$xO = "Yes"
-xO = xO[, c("Gene.Symbol", "xO")]
+xO = xO[, c("Approved symbol", "xO")]
 
 #load Illumina TSO 500 gene panel
 TSO500 = read_xlsx(path = "Gene lists.xlsx", sheet = "TSO500")
-TSO500 = TSO500[TSO500$`Small variants` == "Yes", 1]
+TSO500 = TSO500[TSO500$`Small variants` == "Yes", 3]
 TSO500$TSO500 = "Yes"
+TSO500 = TSO500[, c("Approved symbol", "TSO500")]
 
 
 #load Illumina FoundationOne gene panel
 FoundationOne = read_xlsx(path = "Gene lists.xlsx", sheet = "F_One")
 FoundationOne$FoundationOne = "Yes"
+FoundationOne = FoundationOne[, c("Approved symbol", "FoundationOne")]
 
 #load MSK-IMPACT gene panel
 MSK = read_xlsx(path = "Gene lists.xlsx", sheet = "MSK")
 MSK$MSK = "Yes"
+MSK = MSK[, c("Approved symbol", "MSK")]
 
-venn.diagram(x = list(StrataNGSv3 = StrataNGSv3$Gene.Symbol, TSO500 = TSO500$Gene.Symbol, MSK = MSK$Gene.Symbol, FoundationOne = FoundationOne$Gene.Symbol), filename = "Pic.png")
+venn.diagram(x = list(StrataNGSv3 = StrataNGSv3$`Approved symbol`, TSO500 = TSO500$`Approved symbol`, MSK = MSK$`Approved symbol`, FoundationOne = FoundationOne$`Approved symbol`), filename = "Pic.png")
 
 #Merge panels
-gene_list = merge(x = StrataNGSv3, y = xT, by = "Gene.Symbol", all = TRUE)
-gene_list = merge(x = gene_list, y = xO, by = "Gene.Symbol", all = TRUE)
-gene_list = merge(x = gene_list, y = TSO500, by = "Gene.Symbol", all = TRUE)
-gene_list = merge(x = gene_list, y = FoundationOne, by = "Gene.Symbol", all = TRUE)
-gene_list = merge(x = gene_list, y = MSK, by = "Gene.Symbol", all = TRUE)
+gene_list = merge(x = StrataNGSv3, y = xT, by = "Approved symbol", all = TRUE)
+gene_list = merge(x = gene_list, y = xO, by = "Approved symbol", all = TRUE)
+gene_list = merge(x = gene_list, y = TSO500, by = "Approved symbol", all = TRUE)
+gene_list = merge(x = gene_list, y = FoundationOne, by = "Approved symbol", all = TRUE)
+gene_list = merge(x = gene_list, y = MSK, by = "Approved symbol", all = TRUE)
 
 #save merged file
 write.csv(x = gene_list, file = "panel_comparison.csv")
