@@ -8,20 +8,23 @@ library(VennDiagram)
 #load StrataNGS version 3 panel
 StrataNGSv3 = read_xlsx(path = "Gene lists.xlsx", sheet = "StrataNGSv3")
 StrataNGSv3$StrataNGSv3 = "Yes"
+StrataNGSv3 = StrataNGSv3[, c("Gene.Symbol", "StrataNGSv3")]
 
 #load Tempus xT gene panel
 xT = read_xlsx(path = "Gene lists.xlsx", sheet = "xT")
-xT = xT[ , 1]
 xT$xT = "Yes"
+xT = xT[, c("Gene.Symbol", "xT")]
 
 #load Tempus xO gene panel
 xO = read_xlsx(path = "Gene lists.xlsx", sheet = "xO")
 xO$xO = "Yes"
+xO = xO[, c("Gene.Symbol", "xO")]
 
 #load Illumina TSO 500 gene panel
 TSO500 = read_xlsx(path = "Gene lists.xlsx", sheet = "TSO500")
 TSO500 = TSO500[TSO500$`Small variants` == "Yes", 1]
 TSO500$TSO500 = "Yes"
+
 
 #load Illumina FoundationOne gene panel
 FoundationOne = read_xlsx(path = "Gene lists.xlsx", sheet = "F_One")
