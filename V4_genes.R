@@ -58,6 +58,13 @@ write.csv(x = gene_list, file = "panel_comparison.csv")
 #load Cacer Gene Census gene list
 CancerGeneCensus = read_xlsx(path = "Gene lists.xlsx", sheet = "CancerGeneCensus")
 CancerGeneCensus$CancerGeneCensus = "Yes"
+View(CancerGeneCensus)
+
+gene_annotation = merge(x = StrataNGSv3, y = CancerGeneCensus, by = "Approved symbol", all = TRUE)
+write.csv(x = gene_annotation, file = "gene_annotation.csv")
+
+
+
 
 #load Cold Spring Harbor gene list
 ColdSpringHarbor = read_xlsx(path = "Gene lists.xlsx", sheet = "ColdSpringHarbor")
